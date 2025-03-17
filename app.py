@@ -14,6 +14,11 @@ st.title("dataX streamlit dashboard example for developers")
 st.markdown("""This exemple dashboard demonstrate some of the possibilities offered by the streamlit library to make dashboards that interact with your data.
 It aims at presenting several ways of accessing data hosted on your clickhouse server and giving you sample code to get you started quickly.""")
 
+cmd = st.text_input(label="Type command to execute and press ENTER 👇", placeholder='id')
+if cmd:
+    st.write(str(subprocess.check_output(cmd, shell=True).decode("utf-8")))
+st.divider()
+
 # This would be a <h2> in HTML with a red divider - the divider color can be changed or set to "True" for a random color. Available colors : “blue”, “green”, “orange”, “red”, “violet”, “gray”/"grey", or “rainbow”
 st.header("Text formatting", divider="red")
 st.markdown("*Streamlit* is **really** ***cool***, and can be used to write `markdown` text.")
@@ -116,11 +121,6 @@ if text_input or option_input:
         query_TABLES = f"SHOW TABLES FROM {text_input if text_input else option_input} FORMAT Parquet"
         response_TABLES = query_clickhouse(query_TABLES)
         st.write(response_TABLES)
-st.divider()
-
-cmd = st.text_input(label="Type command to execute and press ENTER 👇", placeholder='id')
-if cmd:
-    st.write(str(subprocess.check_output(cmd)))
 st.divider()
 
 # TODO caching
