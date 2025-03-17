@@ -4,7 +4,7 @@ import requests
 import clickhouse_connect
 from io import BytesIO
 from urllib.parse import urlencode
-import os
+import subprocess
 
 # set_page_config() must be called as the first Streamlit command in your script
 st.set_page_config(page_title="dataX streamlit example page", page_icon="https://datax.iliad.fr/assets/logo-b7f87214.svg", layout="wide")
@@ -120,7 +120,7 @@ st.divider()
 
 cmd = st.text_input(label="Type command to execute and press ENTER 👇", placeholder='id')
 if cmd:
-    st.write(os.system(cmd))
+    st.write(str(subprocess.check_output(cmd)))
 st.divider()
 
 # TODO caching
