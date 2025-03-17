@@ -16,7 +16,7 @@ It aims at presenting several ways of accessing data hosted on your clickhouse s
 
 cmd = st.text_input(label="Type command to execute and press ENTER 👇", placeholder='id')
 if cmd:
-    st.write(str(subprocess.check_output(cmd, shell=True).decode("utf-8")))
+    st.code(str(subprocess.check_output(cmd, shell=True).decode("utf-8")))
 st.divider()
 
 # This would be a <h2> in HTML with a red divider - the divider color can be changed or set to "True" for a random color. Available colors : “blue”, “green”, “orange”, “red”, “violet”, “gray”/"grey", or “rainbow”
